@@ -1,8 +1,9 @@
-from .models import Block
+from .models import Block, PageBlock, Page
 
 
 def counter_views(slug):
-    bloks = Block.objects.filter(page__slug=slug)
-    for block in bloks:
-        block.count_view += 1
-        block.save()
+    data = Block.objects.filter(page__page__slug=slug)
+    for i in data:
+        i.count_view += 1
+        i.save()
+

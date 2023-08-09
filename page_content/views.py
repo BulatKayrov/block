@@ -12,7 +12,7 @@ class PagesView(APIView):
         if slug:
             counter_views(slug=slug)
             queryset = Page.objects.get(slug=slug)
-            serializer = PageSerializers(queryset)
+            serializer = PageSerializers(queryset, context={'slug': slug})
             return Response({'result': serializer.data})
         else:
             queryset = Page.objects.all()
